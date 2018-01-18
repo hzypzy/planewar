@@ -26,4 +26,101 @@ var bj={}
 }
 bj.start()
 
+function Me() {
+	this.ele=$('<div></div>')
+	this.ele.addClass('me')
+	this.ele.appendTo($('#box'))
+}
+Me.prototype.fly=function() {
+//	console.log('haha')
+	var self=this;
+	this.ele.mousedown(function(e){//console.log('haha')
+		var xx=e.offsetX;//console.log(xx)
+		var yy=e.offsetY;
+		$(document).mousemove(function(e){
+			var x=e.clientX-xx;
+			var y=e.clientY-yy;
+			if(x<0){
+				x=0
+			}else if(x>$('#box').width()+10-self.ele.width()){
+				x=$('#box').width()+10-self.ele.width()
+			}
+			if(y<0){
+				y=0
+			}else if(y>$('#box').height()-self.ele.height()){
+				y=$('#box').height()-self.ele.height()
+			}
+			self.ele.css({left:x,top:y})
+		})
+		$(document).mouseup(function(){
+			$(document).off('mousemove mouseup')
+		})
+
+	})
+	
+}
+
+function Fire() {
+	
+	this.ele=$('<div></div>')
+	this.ele.addClass('dadada')
+	this.ele.appendTo($('.me'))
+	
+}
+Fire.prototype.she=function(){
+	var selfer=this;
+	this.ele.animate({top:-$(document).height()},2000,function(){
+		selfer.ele.remove()
+	})
+}
+		
+
+
+
+setInterval(function(){
+	new Fire().she();
+},100)
+
+//左右按键
+Me.prototype.move=function(){
+	
+	var self=this.ele
+	$(document).keydown(function(e){
+		
+		var i=e.keyCode;//console.log(i)
+//		var j=parseFloat(self.css('left')) 
+//		console.log(parseFloat(self.ele.css('left')))
+			if(i==37){
+//				$(document).off('keydown keyup')
+//				self.ele.remove(animate)
+//				self.ele.animate({left:0},5000)
+//			Time();
+			}
+			if(i==39){
+				var Time;
+				you(self);
+//				self.ele.css({left:x})
+//				$(document).off('keydown keyup')
+//				self.ele.animate({left:$(document).width()-100},5000)
+			}
+		})
+			$(document).keyup(function(){
+//				var x=parseFloat(self.ele.css('left')) ;
+//				self.ele.css({left:x})
+				clearInterval(Time)
+			})
+}
+var plane=new Me()
+plane.fly();
+plane.move()
+//
+
+		function you(self){
+			var j=parseFloat(self.css('left')) 
+			console.log(j)
+			Time=setInterval(function(){
+				j++;
+				self.css({'left':j})
+			},30)
+		}
 </script>

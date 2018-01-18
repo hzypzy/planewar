@@ -15,5 +15,21 @@ body{
 	background-size: 100%;
 	background-position-y: 0%;  /* 先将图片挪动到顶部，以便于能够往下落 */
 }
-
-
+.me{
+	width:60px;
+	height:70px;
+	background:url(../img/me.png)no-repeat;
+	background-size:100%;
+	position:absolute;
+	left:50%;
+	top:500px;
+}
+.dadada{
+	width:7px;
+	height:18px;
+	background:url(../img/bullet.png)no-repeat;
+	background-size:100%;
+	position: absolute;
+	left: 26px;
+	top:-5px;
+}
