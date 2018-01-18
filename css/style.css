@@ -30,6 +30,7 @@ body{
 	background:url(../img/bullet.png)no-repeat;
 	background-size:100%;
 	position: absolute;
-	left: 26px;
-	top:-5px;
+	left: 50%;
+	top:480px;
+	margin-left:27px;
 }
