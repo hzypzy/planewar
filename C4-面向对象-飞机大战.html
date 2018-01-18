@@ -11,142 +11,65 @@
 	</body>
 </html>
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="js/Engine.js"></script>
 <script type="text/javascript">
 
-var bj={}
-	bj={
-	ele:$('#box'),
-	start:function(){
-		var self=this;
-		this.ele.animate({'background-position-y':'-100%'},5000,'linear',function(){
-			self.ele.css({'background-position-y':'0%'})
-			self.start()
-		})
-	}
-}
-//背景启动 gamestart
+//启动
 bj.start()
-
-function Me() {
-	this.ele=$('<div></div>')
-	this.ele.addClass('me')
-	this.ele.appendTo($('#box'))
-}
-Me.prototype.fly=function() {
-//	console.log('haha')
-	var self=this;
-	this.ele.mousedown(function(e){//console.log('haha')
-		var xx=e.offsetX;//console.log(xx)
-		var yy=e.offsetY;
-		$(document).mousemove(function(e){
-			var x=e.clientX-xx;
-			var y=e.clientY-yy;
-			if(x<0){
-				x=0
-			}else if(x>$('#box').width()+10-self.ele.width()){
-				x=$('#box').width()+10-self.ele.width()
-			}
-			if(y<0){
-				y=0
-			}else if(y>$('#box').height()-self.ele.height()){
-				y=$('#box').height()-self.ele.height()
-			}
-			self.ele.css({left:x,top:y})
-		})
-		$(document).mouseup(function(){
-			$(document).off('mousemove mouseup')
-		})
-
-	})
-	
-}
-
-function Fire() {
-	
-	this.ele=$('<div></div>')
-	this.ele.addClass('dadada')
-	this.ele.appendTo($('#box'))
-	
-}
-Fire.prototype.she=function(){
-	var selfer=this;
-	var left=parseFloat($('.me').css('left'));//console.log(left)
-	var top=parseFloat($('.me').css('top'));//console.log(left)
-	this.ele.css({'left':left,'top':top});//console.log(left)
-	this.ele.animate({top:-$(document).height()},2000,function(){
-		selfer.ele.remove()
-	})
-	
-}
-		
-
 
 //发射子弹
 setInterval(function(){
 	new Fire().she();
+//	console.log($('.dadada').css('top'))
+
 },100)
 
-//.she()
-//左右按键
-
-Me.prototype.move=function(){
-	
-	var self=this.ele
-	$(document).keydown(function(e){
-		var Time;
-		var Timer;
-		var i=e.keyCode;//console.log(i)
-//		var j=parseFloat(self.css('left')) 
-//		console.log(parseFloat(self.ele.css('left')))
-			if(i==37){
-				
-//				var Timer;
-				clearInterval(Time)
-				zuo(self);
-//				$(document).off('keydown keyup')
-//				self.ele.remove(animate)
-//				self.ele.animate({left:0},5000)
-//				Time();
-			}
-			if(i==39){
-				
-//				var Time;
-				clearInterval(Timer)
-				you(self);
-//				self.ele.css({left:x})
-//				$(document).off('keydown keyup')
-//				self.ele.animate({left:$(document).width()-100},5000)
-			}
-		})
-			$(document).keyup(function(){
-//				var x=parseFloat(self.ele.css('left')) ;
-//				self.ele.css({left:x})
-//				clearInterval(Time)
-				self.off('keydown keyup')
-			})
-}
 //创建自己的飞机
 var plane=new Me()
-plane.fly();
-plane.move()
-//
+plane.fly()
+plane.move()		
 
-		function you(self){
-			
-			var j=parseFloat(self.css('left')) 
-			console.log(j)
-			Time=setInterval(function(){
-				j++;
-				self.css({'left':j})
-			},30)
-		}
-		function zuo(self){
-			
-			var k=parseFloat(self.css('left')) 
-//			console.log(j)
-			Timer=setInterval(function(){
-				k--;
-				self.css({'left':k})
-			},30)
-		}
+//敌机
+setInterval(function(){
+new Enemy().fly();
+
+},1000)
+setInterval(function(){
+new Enemy2().fly();
+},2000)
+setInterval(function(){
+new Enemy3().fly();
+},3000)
+
+
+//setTimeout(function(){
+//	setInterval(function(){
+//		//得分
+////console.log('hah')
+////获取子弹坐标
+//var x=$('.dadada').position().left+($('.dadada').width()/2);//子弹 left
+//var y=$('.dadada').position().top+($('.dadada').height()/2);//子弹 top
+////获取敌机判定坐标
+//var xx=$('.enemy').position().left-($('.dadada').width()/2);//敌机左上判定 left
+//var yy=$('.enemy').position().top-($('.dadada').height()/2);//敌机左上判定 top
+//var xxx=$('.enemy').position().left+$('.enemy').width()+($('.dadada').width()/2);//敌机右下判定 left
+//var yyy=$('.enemy').position().top+$('.enemy').height()+($('.dadada').height()/2);//敌机右下判定 left
+//console.log($('.enemy').position().left)
+////console.log(x)
+////console.log(xx)
+////console.log(xxx)
+//
+////监听子弹与敌机坐标相对位置
+//
+//	if(x>xx&&x<xxx&&y>yy&&y<yyy){
+////		alert('over')
+////		$('.enemy').stop();
+//		console.log('haha')
+//	}
+//
+//	},10)
+//},100)
+
+
+
 </script>

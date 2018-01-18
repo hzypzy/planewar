@@ -7,6 +7,7 @@
 body{
 	width: 100%;
 	height:100vh;
+	overflow: hidden;
 }
 #box {
 	width: 100%;
@@ -33,4 +34,25 @@ body{
 	left: 50%;
 	top:480px;
 	margin-left:27px;
+}
+.enemy{
+	width: 62px;
+	height: 36px;
+	background:url(../img/plain1.png)no-repeat;
+	background-size:100%;
+	position: absolute;
+}
+.enemy2{
+	width: 65px;
+	height: 82px;
+	background:url(../img/plain2.png)no-repeat;
+	background-size:100%;
+	position: absolute;
+}
+.enemy3{
+	width: 79px;
+	height: 120px;
+	background:url(../img/plain3.png)no-repeat;
+	background-size:100%;
+	position: absolute;
 }
