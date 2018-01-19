@@ -12,34 +12,45 @@
 </html>
 <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="js/Engine.js"></script>
+<script type="text/javascript" src="js/enemy.js"></script>
+<script type="text/javascript" src="js/enemy1.js"></script>
+<script type="text/javascript" src="js/enemy2.js"></script>
+<script type="text/javascript" src="js/enemy3.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
 <script type="text/javascript">
 
 //启动
-bj.start()
+game.start()
+//创建一架飞机
+game.createme()
+//发射子弹
+game.fire()
+//console.log()
+//创建敌机
+game.enemy()
+
+console.log(objj)
 
 //发射子弹
-setInterval(function(){
-	new Fire().she();
-//	console.log($('.dadada').css('top'))
-
-},100)
+//setInterval(function(){
+//	new Fire().she();
+////	console.log($('.dadada').css('top'))
+//
+//},100)
 
 //创建自己的飞机
-var plane=new Me()
-plane.fly()
-plane.move()		
+//var plane=new Me()
+//plane.fly()
+//plane.move()		
 
-//敌机
-setInterval(function(){
-new Enemy().fly();
 
-},1000)
-setInterval(function(){
-new Enemy2().fly();
-},2000)
-setInterval(function(){
-new Enemy3().fly();
-},3000)
+//setInterval(function(){
+//
+//},2000)
+//setInterval(function(){
+//
+//},3000)
 
 
 //setTimeout(function(){
