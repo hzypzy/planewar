@@ -1,7 +1,14 @@
+var objj={}
+var hao=Math.random()
 
 //背景启动 gamestart
-var bj={}
-	bj={
+
+//var obj={}
+//obj.hao=null;
+var game={
+//	obj:{
+//		hao:null
+//	},
 	ele:$('#box'),
 	start:function(){
 		var self=this;
@@ -9,18 +16,26 @@ var bj={}
 			self.ele.css({'background-position-y':'0%'})
 			self.start()
 		})
-	}
+	},
+	createme:createMe,
+	fire:ddd,
+	enemy:rua
 }
 
+//自己的飞机
+function createMe(){
+new Me().fly()
 
-
-
+}
 //创建自己的飞机~
 function Me() {
+
 	this.ele=$('<div></div>')
 	this.ele.addClass('me')
 	this.ele.appendTo($('#box'))
+	
 }
+
 Me.prototype.fly=function() {
 //	console.log('haha')
 	var self=this;
@@ -48,8 +63,85 @@ Me.prototype.fly=function() {
 
 	})
 	
+	var selfs=this.ele
+	$(document).keydown(function(e){
+	var j=parseFloat(selfs.css('left'))
+//	if(lock){return}else{
+		
+//		console.log('hha')
+		var i=e.keyCode;//console.log(i)
+//		var j=parseFloat(self.css('left')) 
+//		console.log(parseFloat(self.ele.css('left')))
+			if(i==37){
+//				clearInterval(Time)
+//				var lock=true;
+//				var Timer;
+//				clearInterval(Time)
+				zuo(selfs,j);
+//				$(document).off('keydown keyup')
+//				self.ele.remove(animate)
+//				self.ele.animate({left:0},5000)
+//				Time();
+			}
+			else if(i==39){
+//				clearInterval(Timer)
+//				var lock=true;
+//				var Time;
+//				clearInterval(Timer)
+				you(selfs,j);
+//				self.ele.css({left:x})
+//				$(document).off('keydown keyup')
+//				self.ele.animate({left:$(document).width()-100},5000)
+			}
+		})
+//		$(document).keyup(function(){
+//			lock=false;
+////			self.ele.stop()
+////				console.log('hshs')
+////				$(document).off('keydown')
+////				
+//////				var x=parseFloat(self.ele.css('left')) ;
+//////				self.ele.css({left:x})
+//				clearInterval(Time)
+//				clearInterval(Timer)
+//			})
+	
+	return this;
 }
+	//左右按键
 
+
+
+function you(self,j){
+//	if(lock){return}else{
+//	var j=parseFloat(self.css('left')) 
+//	console.log(j)
+//	Time=setInterval(function(){
+		j+=30;
+		self.css({'left':j})
+//	},30)
+}
+	function zuo(self,j){	
+//		if(lock){return}else{
+		var j=parseFloat(self.css('left')) 
+//		console.log(j)
+//		Timer=setInterval(function(){
+			j-=30;
+			self.css({'left':j})
+//		},30)
+	}
+
+
+//发射子弹  获取页面中的子弹
+function ddd(){
+	objj.hao=null
+//	objj.hao;
+	 var times=setInterval(function(){
+		hao=Math.random();
+		objj[hao]=new Fire().she(objj,hao);//console.log(new Fire().she(objj,hao))
+	},100)
+	
+}
 
 //让子弹飞
 function Fire() {
@@ -59,107 +151,69 @@ function Fire() {
 	this.ele.appendTo($('#box'))
 	
 }
-Fire.prototype.she=function(){
+Fire.prototype.she=function(obj,hao){
 	var selfer=this;
 	var left=parseFloat($('.me').css('left'));//console.log(left)
 	var top=parseFloat($('.me').css('top'));//console.log(left)
 	this.ele.css({'left':left,'top':top});//console.log(left)
 	this.ele.animate({top:-$(document).height()},2000,function(){
 		selfer.ele.remove()
+		delete obj[hao]
+//		console.log(obj)
 	})
+	return this.ele
+//	console.log(obj)
+}
+
+
+
+
+
+
+//var Time;
+//var Timer;
+//var lock=false;
+
+
+
+
+
+
+//敌机出动  获取页面当中的敌机
+function rua(){
+var obj={}
+	obj.hao=null;
+	setInterval(function(){
+		hao=Math.random();
+		var a=hao+=1;
+		var b=hao+=2;
+		var c=hao+=3;
+		var i=Math.random();
+		if(i<0.3){
+			obj[a]=new Enemy3().fly(obj,a)
+		}
+		else if(i<0.6){
+			obj[b]=new Enemy2().fly(obj,b);
+		}
+		else{
+			obj[c]=new Enemy1().fly(obj,c);
+		}
+//					console.log(obj)
+	},1000)
 	
 }
 
 
 
-//左右按键
 
-Me.prototype.move=function(){
-	
-	var self=this.ele
-	$(document).keydown(function(e){
-		var Time;
-		var Timer;
-		var i=e.keyCode;//console.log(i)
-//		var j=parseFloat(self.css('left')) 
-//		console.log(parseFloat(self.ele.css('left')))
-			if(i==37){
-				
-//				var Timer;
-//				clearInterval(Time)
-				zuo(self);
-//				$(document).off('keydown keyup')
-//				self.ele.remove(animate)
-//				self.ele.animate({left:0},5000)
-//				Time();
-			}
-			if(i==39){
-				
-//				var Time;
-//				clearInterval(Timer)
-				you(self);
-//				self.ele.css({left:x})
-//				$(document).off('keydown keyup')
-//				self.ele.animate({left:$(document).width()-100},5000)
-			}
-		})
-			$(document).keyup(function(){
-				console.log('hshs')
-				$(document).off('keydown')
-				
-//				var x=parseFloat(self.ele.css('left')) ;
-//				self.ele.css({left:x})
-//				clearInterval(Time)
-			})
-}
 
-function you(self){
-			
-	var j=parseFloat(self.css('left')) 
-	console.log(j)
-	Time=setInterval(function(){
-		j++;
-		self.css({'left':j})
-	},30)
-}
-	function zuo(self){		
-		var k=parseFloat(self.css('left')) 
-//		console.log(j)
-		Timer=setInterval(function(){
-			k--;
-			self.css({'left':k})
-		},30)
-	}
+
 	
 	
-//创建敌机
-function Enemy(){
-	this.ele=$('<div></div>')
-	this.ele.addClass('enemy')
-	this.ele.appendTo($('#box'))
-	this.ele.css({top:-120,left:Math.random()*$('#box').width()-100})
-}
-Enemy.prototype.fly=function() {
-	var self=this;
-	this.ele.animate({top:$('#box').height()},5000,'linear',function(){
-		self.ele.remove()
-	})
-}
-function Enemy2(){
-	Enemy.call(this)
-	this.ele.removeClass();
-	this.ele.addClass('enemy2');
-}
 
-Enemy2.prototype=Enemy.prototype;
 
-function Enemy3(){
-	Enemy.call(this)
-	this.ele.removeClass();
-	this.ele.addClass('enemy3');
-}
 
-Enemy3.prototype=Enemy2.prototype;
+
 
 
 
