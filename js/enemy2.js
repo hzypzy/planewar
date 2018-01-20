@@ -5,6 +5,12 @@ function Enemy2(){
 
 	this.speed=20;
 	this.hp=3;
+		this.dieImg = [		// 死亡图片
+		"url(img/plain2_die1.png)",
+		"url(img/plain2_die2.png)",
+		"url(img/plain2_die3.png)",
+		"url(img/plain2_die4.png)"
+	]
 }
 
 //Enemy2.prototype=Enemy.prototype;

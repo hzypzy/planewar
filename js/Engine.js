@@ -6,10 +6,11 @@ var hao=Math.random()
 //var obj={}
 //obj.hao=null;
 var game={
-//	obj:{
-//		hao:null
-//	},
+	bullets:{len:0},
+//	enemys:{len:0},
+	//找到背景
 	ele:$('#box'),
+	//游戏背景滚动
 	start:function(){
 		var self=this;
 		this.ele.animate({'background-position-y':'-100%'},5000,'linear',function(){
@@ -17,9 +18,37 @@ var game={
 			self.start()
 		})
 	},
+	//创建自己的飞机
 	createme:createMe,
+	//开火
 	fire:ddd,
-	enemy:rua
+	obj:{},
+	//创建敌机
+	enemy:function(){
+
+	game.obj.len=0;
+	setInterval(function(){
+		len=Math.random();
+		var a=len+=1;
+		var b=len+=2;
+		var c=len+=3;
+		var i=Math.random();
+		if(i<0.3){
+			game.obj[a]=new Enemy3().fly(game.obj,a)
+		}
+		else if(i<0.6){
+			game.obj[b]=new Enemy2().fly(game.obj,b);
+		}
+		else{
+			game.obj[c]=new Enemy1().fly(game.obj,c);
+		}
+//					console.log(obj)
+	},1000)
+//	console.log(game.obj)
+}
+
+	
+	
 }
 
 //自己的飞机
@@ -134,31 +163,35 @@ function you(self,j){
 
 //发射子弹  获取页面中的子弹
 function ddd(){
-	objj.hao=null
-//	objj.hao;
+	 var self=this
 	 var times=setInterval(function(){
-		hao=Math.random();
-		objj[hao]=new Fire().she(objj,hao);//console.log(new Fire().she(objj,hao))
-	},100)
+		
+		var x = self.ele.position().left + self.ele.width()/2 - 3
+		var y = self.ele.position().top - 18
+		
+		new Fire(x,y);//console.log(new Fire().she(objj,hao))
+		
+	},500)
 	
 }
 
 //让子弹飞
-function Fire() {
-	
+function Fire(x,y) {
+	this.id="b"+game.bullets.len++
+	game.bullets[this.id] = this
 	this.ele=$('<div></div>')
 	this.ele.addClass('dadada')
 	this.ele.appendTo($('#box'))
-	
+	this.she()//开始射击
 }
-Fire.prototype.she=function(obj,hao){
+Fire.prototype.she=function(){
 	var selfer=this;
 	var left=parseFloat($('.me').css('left'));//console.log(left)
 	var top=parseFloat($('.me').css('top'));//console.log(left)
 	this.ele.css({'left':left,'top':top});//console.log(left)
 	this.ele.animate({top:-$(document).height()},2000,function(){
 		selfer.ele.remove()
-		delete obj[hao]
+		delete game.bullets[selfer.id]
 //		console.log(obj)
 	})
 	return this.ele
@@ -166,7 +199,38 @@ Fire.prototype.she=function(obj,hao){
 }
 
 
-
+// 子弹爆炸
+Fire.prototype.boom = function() {
+	
+	var self = this			// 备份子弹对象
+	
+	var arr = [				// 子弹死亡变化的图片
+		"url(img/die1.png)",
+		"url(img/die2.png)"
+	]
+	var i = 0				// 图片变化编号
+	
+	self.ele.stop()			// 停止动画移动
+	// 创建定时器
+	var timers = setInterval(function() {
+		self.ele.css({"background": arr[i++]})  // 改变背景图片
+		self.ele.css({			// 改变宽高
+			width: 40,
+			height: 43
+		})
+		if (i >= arr.length) {		// 已经变到最后一张图片
+			clearInterval(timers)	// 清除定时器
+			
+			self.ele.remove()		// 删除子弹
+		}
+	}, 100)
+	
+	
+	
+	
+	// 删除全局对象中保存的子弹对象
+	delete game.bullets[this.id]
+}
 
 
 
@@ -180,28 +244,6 @@ Fire.prototype.she=function(obj,hao){
 
 
 //敌机出动  获取页面当中的敌机
-function rua(){
-var obj={}
-	obj.hao=null;
-	setInterval(function(){
-		hao=Math.random();
-		var a=hao+=1;
-		var b=hao+=2;
-		var c=hao+=3;
-		var i=Math.random();
-		if(i<0.3){
-			obj[a]=new Enemy3().fly(obj,a)
-		}
-		else if(i<0.6){
-			obj[b]=new Enemy2().fly(obj,b);
-		}
-		else{
-			obj[c]=new Enemy1().fly(obj,c);
-		}
-//					console.log(obj)
-	},1000)
-	
-}
 
 
 
