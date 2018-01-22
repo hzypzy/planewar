@@ -1,5 +1,4 @@
 
-
 var tE = {
 	
 	
@@ -10,6 +9,8 @@ var tE = {
 		var bullets = game.bullets;
 		// 2. 所有敌机
 		var enemys = game.obj;
+		// 3、获取自己的飞机
+		var myself=game.plane;
 //		console.log(bullets)
 		// 3. 遍历所有子弹（遍历对象）
 		for (var k in bullets) {
@@ -35,6 +36,9 @@ var tE = {
 					
 					b.boom()		// 子弹爆炸
 				}
+				if(isTouch(myself.ele,e.ele)){
+					myself.boom()
+				}
 			}
 			
 		}
@@ -44,7 +48,6 @@ var tE = {
 	
 	touchListen: function() {  // 监听是否碰撞
 		var self = this
-	
 		// 1. 定时器，不断检测
 		setInterval(function() {
 			self.isTouchEnemy()

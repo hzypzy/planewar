@@ -1,14 +1,34 @@
 
-
 //创建自己的飞机~
 function Me() {
 
 	this.ele=$('<div></div>')
 	this.ele.addClass('me')
 	this.ele.appendTo($('#box'))
-	
+	this.dieImg = [		// 死亡图片
+		"url(img/me_die1.png)",
+		"url(img/me_die2.png)",
+		"url(img/me_die3.png)",
+		"url(img/me_die4.png)"
+	]
+	var self=this;
+	this.boom=function(){// 创建定时器
+	var i=0;
+	var timers = setInterval(function() {
+		self.ele.stop()
+		
+		self.ele.css({"background": self.dieImg[i++]})  // 改变背景图片
+			if (i >= self.dieImg.length) {		// 已经变到最后一张图片
+				clearInterval(timers)	// 清除定时器
+				
+				self.ele.remove()		// 删除
+//				delete game.plane;
+//				game.fire().stop()
+alert('GameOver')
+			}
+		}, 100)
+	}
 }
-
 Me.prototype.fly=function() {
 //	console.log('haha')
 	var self=this;

@@ -17,8 +17,8 @@ body{
 	background-position-y: 0%;  /* 先将图片挪动到顶部，以便于能够往下落 */
 }
 .me{
-	width:60px;
-	height:70px;
+	width:98px;
+	height:122px;
 	background:url(../img/me.png)no-repeat;
 	background-size:100%;
 	position:absolute;
@@ -32,8 +32,8 @@ body{
 	background-size:100%;
 	position: absolute;
 	left: 50%;
-	top:480px;
-	margin-left:27px;
+	/* top:460px; */
+	margin-left:47px;
 }
 .enemy{
 	width: 59px;

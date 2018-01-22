@@ -12,6 +12,7 @@ var game={
 	},
 	//创建自己的飞机
 	createme:createMe,
+	plane:{},
 	//开火
 	fire:function(){
 	 var self=this
@@ -61,6 +62,7 @@ var game={
 }
 //自己的飞机
 function createMe(){
-new Me().fly()
-
+	var a=new Me();
+	game.plane=a;
+	a.fly();
 }
