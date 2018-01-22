@@ -2,7 +2,6 @@
 function Enemy(){
 	
 	this.ele=$('<div></div>')
-//	this.ele.addClass('enemy')
 	this.ele.appendTo($('#box'))
 	this.ele.css({top:-120,left:Math.random()*$('#box').width()-100})
 	this.speed=50;
@@ -12,19 +11,12 @@ function Enemy(){
 Enemy.prototype.fly=function(obj,hao) {
 
 	var self=this;
-//	var hao=Math.random();
-//	this.obj[hao]=this.ele;
 	var t=100000/this.speed;
 	this.ele.animate({top:$('#box').height()},t,'linear',function(){
 		self.ele.remove();
-//		console.log(game.obj[hao])
 		delete game.obj[hao]
-//		console.log(obj)
-
 		
 	})
-	
-//	console.log(this.obj)
 	return this.ele
 }
 // 让敌机掉血的方法
@@ -52,7 +44,7 @@ Enemy.prototype.looseBlood = function() {
 		
 		
 		// 删除全局保存的敌机对象
-		delete game.obj[this.id]
+		delete game.obj[this.hao]
 	}
 }
 
