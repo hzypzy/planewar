@@ -5,6 +5,7 @@ function Enemy2(){
 
 	this.speed=20;
 	this.hp=3;
+	this.score=30;
 		this.dieImg = [		// 死亡图片
 		"url(img/plain2_die1.png)",
 		"url(img/plain2_die2.png)",

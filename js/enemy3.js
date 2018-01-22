@@ -5,6 +5,7 @@ function Enemy3(){
 	this.ele.addClass('enemy3');
 	this.speed=10;
 	this.hp=10;
+	this.score=20;
 	this.dieImg = [		// 死亡图片
 		"url(img/plain3_die1.png)",
 		"url(img/plain3_die2.png)",

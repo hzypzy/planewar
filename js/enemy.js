@@ -7,7 +7,7 @@ function Enemy(){
 	this.ele.css({top:-120,left:Math.random()*$('#box').width()-100})
 	this.speed=50;
 	this.hp=1;
-
+	this.score=50;
 }
 Enemy.prototype.fly=function(obj,hao) {
 
@@ -17,8 +17,10 @@ Enemy.prototype.fly=function(obj,hao) {
 	var t=100000/this.speed;
 	this.ele.animate({top:$('#box').height()},t,'linear',function(){
 		self.ele.remove();
-		delete obj[hao]
+//		console.log(game.obj[hao])
+		delete game.obj[hao]
 //		console.log(obj)
+
 		
 	})
 	

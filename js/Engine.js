@@ -1,5 +1,5 @@
-var objj={}
-var hao=Math.random()
+//var objj={}
+//var hao=Math.random()
 
 //背景启动 gamestart
 
@@ -34,13 +34,22 @@ var game={
 		var c=len+=3;
 		var i=Math.random();
 		if(i<0.3){
-			game.obj[a]=new Enemy3().fly(game.obj,a)
+			var e3=new Enemy3();
+			game.obj[a]=e3;
+			e3.fly(e3,a)
+//			game.obj[a]=new Enemy3().fly(game.obj,a)
 		}
 		else if(i<0.6){
-			game.obj[b]=new Enemy2().fly(game.obj,b);
+			var e2=new Enemy2();
+			game.obj[b]=e2;
+			e2.fly(e2,b)
+//			game.obj[b]=new Enemy2().fly(game.obj,b);
 		}
 		else{
-			game.obj[c]=new Enemy1().fly(game.obj,c);
+			var e1=new Enemy1();
+			game.obj[c]=e1;
+			e1.fly(e3,c);
+//			game.obj[c]=new Enemy1().fly(game.obj,c);
 		}
 //					console.log(obj)
 	},1000)
@@ -171,13 +180,13 @@ function ddd(){
 		
 		new Fire(x,y);//console.log(new Fire().she(objj,hao))
 		
-	},500)
+	},100)
 	
 }
 
 //让子弹飞
 function Fire(x,y) {
-	this.id="b"+game.bullets.len++
+	this.id="b"+game.bullets.len++;//console.log(len)
 	game.bullets[this.id] = this
 	this.ele=$('<div></div>')
 	this.ele.addClass('dadada')

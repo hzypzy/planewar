@@ -26,12 +26,12 @@ var tE = {
 				}
 				
 				var e = enemys[j]	// 1架敌机
-				console.log(e)
+//				console.log(e)
 				// 判断 子弹元素 和 敌机元素 是否碰撞
-				if (isTouch(b.ele, e)) {
+				if (isTouch(b.ele, e.ele)) {
 //					console.log("碰撞了")
 
-//					e.looseBlood()	// 让敌机掉血
+					e.looseBlood()	// 让敌机掉血
 					
 					b.boom()		// 子弹爆炸
 				}
